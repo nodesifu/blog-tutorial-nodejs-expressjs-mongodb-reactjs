@@ -1,0 +1,42 @@
+{
+  "name": "blog-tutorial",
+  "version": "1.0.0",
+  "description": "Tutorial how to create a blog with nodejs &amp; expressjs &amp; mongodb &amp; reactjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodesifu/blog-tutorial-nodejs-expressjs-mongodb-reactjs.git"
+  },
+  "keywords": [
+    "tutorial",
+    "nodejs",
+    "expressjs",
+    "mongodb",
+    "reactjs"
+  ],
+  "author": "nodesifu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nodesifu/blog-tutorial-nodejs-expressjs-mongodb-reactjs/issues"
+  },
+  "homepage": "https://github.com/nodesifu/blog-tutorial-nodejs-expressjs-mongodb-reactjs#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "mongoose": "^4.7.4",
+    "morgan": "^1.7.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.21.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-preset-stage-1": "^6.16.0",
+    "babel-preset-stage-2": "^6.18.0",
+    "babel-preset-stage-3": "^6.17.0"
+  }
+}
