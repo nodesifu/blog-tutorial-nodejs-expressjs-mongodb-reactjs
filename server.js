@@ -3,10 +3,20 @@ import mongoose from 'mongoose'
 import session from 'express-session' // https://github.com/expressjs/session
 import bodyParser from 'body-parser' // https://github.com/expressjs/body-parser
 import morgan from 'morgan' // https://github.com/expressjs/morgan
+import bluebird from 'bluebird' // https://github.com/petkaantonov/bluebird
 
 import config from './config'
+import authRoute from './routes/auth'
+import errorHandler from './middlewares/errorHandler'
 
 const app = express()
+
+mongoose.Promise = bluebird
+mongoose.connect(config.database, err => {
+  if (err) throw err
+  console.log('Mongo connected')
+})
+
 app.listen(config.port, err => {
   if (err) throw err
   console.log(`Server listening on port ${config.port}`)
@@ -21,6 +31,6 @@ app.use(session({ // https://books.google.com.ua/books?id=ywrODAAAQBAJ&pg=PA134&
   secret: config.secret
 }))
 
-app.get('*', async (req, res) => {
-  res.end('Hello World')
-})
+app.use('/api', authRoute)
+
+app.use(errorHandler)
