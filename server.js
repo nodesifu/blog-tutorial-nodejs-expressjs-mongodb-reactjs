@@ -8,6 +8,7 @@ import bluebird from 'bluebird' // https://github.com/petkaantonov/bluebird
 import config from './config'
 import authRoute from './routes/auth'
 import errorHandler from './middlewares/errorHandler'
+import checkToken from './middlewares/checkToken'
 
 const app = express()
 
@@ -32,5 +33,8 @@ app.use(session({ // https://books.google.com.ua/books?id=ywrODAAAQBAJ&pg=PA134&
 }))
 
 app.use('/api', authRoute)
+app.use('/test', checkToken, (req, res) => {
+  res.json('test')
+})
 
 app.use(errorHandler)
