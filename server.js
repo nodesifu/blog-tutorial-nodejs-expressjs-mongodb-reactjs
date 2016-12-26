@@ -7,6 +7,7 @@ import bluebird from 'bluebird' // https://github.com/petkaantonov/bluebird
 
 import config from './config'
 import authRoute from './routes/auth'
+import userRoute from './routes/user'
 import errorHandler from './middlewares/errorHandler'
 import checkToken from './middlewares/checkToken'
 
@@ -23,7 +24,7 @@ app.listen(config.port, err => {
   console.log(`Server listening on port ${config.port}`)
 })
 
-app.use(morgan('combined'))
+app.use(morgan('tiny'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(session({ // https://books.google.com.ua/books?id=ywrODAAAQBAJ&pg=PA134&lpg=PA134&dq=saveUninitialized&source=bl&ots=ebWyG5qQRM&sig=x2Tm-CsGUXPkPkr7db9GvO_m03c&hl=ru&sa=X&ved=0ahUKEwjto62i6YzRAhXJXSwKHSijBUsQ6AEIMjAE#v=onepage&q=saveUninitialized&f=false
@@ -33,6 +34,7 @@ app.use(session({ // https://books.google.com.ua/books?id=ywrODAAAQBAJ&pg=PA134&
 }))
 
 app.use('/api', authRoute)
+app.use('/api', checkToken, userRoute)
 app.use('/test', checkToken, (req, res) => {
   res.json('test')
 })
